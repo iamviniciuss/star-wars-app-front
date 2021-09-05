@@ -1,12 +1,75 @@
-import { Fragment, useContext, useRef } from 'react'
+import { Fragment, useContext, useEffect, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { PeopleContext } from '../../../../contexts/PeopleoContext'
+import Swapi from '../../../../services/api'
 
 export default function ModalPeople() {
     
     const {openModalPeople, setOpenModalPeople} = useContext(PeopleContext)
   
     const { people } = useContext(PeopleContext)
+    const [people_modal , setPeopleOfModal] = useState(people);
+
+    const getPeople = (people_id:number) => {
+        Swapi.getPeople(people_id)
+            .then((response:any) => {
+
+                const people_aux = response.data;
+
+                let frase = `Olá! Meu nome é ${people_aux.name}. ${getSpecies(people_aux.species)}, peso ${people_aux.mass} Kg, nasci em ${people_aux.homeworld.name} no ano ${people_aux.birth_year} e ${getStarships(people_aux.starships)}.`;
+
+                people_aux.phrase = frase;
+
+                setPeopleOfModal(people_aux)
+            })
+    }
+
+    const getSpecies = (species:Array<any>) => {
+
+        if (species.length === 0) {
+            return "Sou um humano"
+        }
+
+        let string = `Sou um `;
+        let first_starship = ""
+
+        species.map((specie:any)=>{
+            string += ` ${first_starship} ${specie.name}`
+            first_starship = " e"
+        })
+
+        return string
+
+    }
+
+
+    const getStarships = (starships:Array<any>) => {
+        
+        if (starships.length === 0) {
+            return "nunca pilotei espaçonaves"
+        }
+
+        let string = `já pilotei `;
+        let first_starship = ""
+
+        starships.map((starship:any)=>{
+            string += ` ${first_starship} ${starship.name}`
+            first_starship = " e"
+        })
+
+        return string
+
+    }
+
+    useEffect(()=>{
+        
+        if(!people.hasOwnProperty('id')) {
+            return
+        }
+        
+        getPeople(people.id)
+
+    } , [people])
 
     const cancelButtonRef = useRef(null)
 
@@ -43,11 +106,11 @@ export default function ModalPeople() {
                         <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                             <div className="sm:flex sm:items-start">
                                 <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                                    <Dialog.Title as="h3" className="text-lg leading-6 font-medium text-gray-900 text-center">
+                                    <Dialog.Title as="h3"  data-cy-people-name={people.phrase || "Frase..."} className="text-lg leading-6 font-medium text-gray-900 text-center">
                                     {people.name || ''}
                                     </Dialog.Title>
                                     <div className="mt-2">
-                                        <p className="text-white italic text-center mt-4 text-gray-500">{people.phrase || 'Frase...'}</p>
+                                        <p data-cy-people-phrase={people_modal.phrase || "Frase..."} className="text-white italic text-center mt-4 text-gray-500">{people_modal.phrase || "Frase..."}</p>
                                     </div>
                                 </div>
                             </div>
@@ -55,6 +118,7 @@ export default function ModalPeople() {
 
                         <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                             <button
+                            data-cy-close-modal={true}
                             type="button"
                             className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-yellow-600 text-base font-medium text-white hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 sm:ml-3 sm:w-auto sm:text-sm"
                             onClick={() => setOpenModalPeople(false)}
