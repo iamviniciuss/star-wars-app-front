@@ -39,6 +39,9 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
+    "cypress": "cypress run",
+    "cypress:chrome": "cypress run -b chrome",
+    "cypress:open": "cypress open",
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
