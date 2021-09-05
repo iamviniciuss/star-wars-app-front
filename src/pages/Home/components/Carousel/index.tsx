@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import './index.css';
 
 const phrases = [
     {
@@ -29,7 +28,7 @@ export function Carousel() {
 
         setPhrase(phrases[index])
 
-        setTimeout(()=>{updateIndex()},3000)
+        setTimeout(()=>{updateIndex()},5000)
     }
 
 
