@@ -3,7 +3,8 @@ body{
   background-image: url("https://starwarsblog.starwars.com/wp-content/uploads/2020/04/star-wars-backgrounds-25.jpg");
 
   /* Full height */
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
 
   /* Center and scale the image nicely */
   background-position: center;
@@ -12,10 +13,7 @@ body{
 }
 
 .card-list {
-    /* width: 10rem; */
     height: 12rem;
-    /* background: #989898; */
-    /* opacity: 0.7; */
     color: white;
     font-weight: 900;
     gap: 1rem;
