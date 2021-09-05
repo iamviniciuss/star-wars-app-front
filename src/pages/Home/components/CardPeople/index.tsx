@@ -12,7 +12,7 @@ export function CardPeople(props:any) {
     }
 
     return (
-        <a role="button" onClick={showPeopleOnModal} >
+        <a role="button" onClick={showPeopleOnModal} data-cy={props.people.id}>
             <div className="hover:bg-yellow-400  bg-gray-100 bg-opacity-60 shadow-md overflow-hidden flex flex-wrap items-center justify-center card-list m-1">
                 <div className="vacation-card">
                     <div className="vacation-card-info">
@@ -23,6 +23,5 @@ export function CardPeople(props:any) {
                 </div>
             </div>
         </a>
-        
     );
 }
