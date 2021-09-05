@@ -6,7 +6,7 @@ import { classNames } from "../../../utils/classnames";
 const user = {
     name: 'Vinícius Santos',
     email: 'viniciussantos.dev@gmail.com',
-    imageUrl:'https://www.fotoefeitos.com/images/202109/01/fotoefeitos.com__final_1480036530360780018_.jpg?act=91',
+    imageUrl:'/avatar.jpg',
 }
 
 const userNavigation = [
@@ -15,9 +15,6 @@ const userNavigation = [
 
 const navigation = [
     { name: 'Peoples', href: '/', current: true },
-    // { name: 'Planets', href: '#', current: false },
-    // { name: 'Species', href: '#', current: false },
-    // { name: 'Starcrafts', href: '#', current: false },
 ]
 
 export function Nav(props:any) {
@@ -32,7 +29,7 @@ export function Nav(props:any) {
                   <div className="flex-shrink-0">
                     <img
                       className="h-16 w-16"
-                      src="https://seeklogo.com/images/S/Star_Wars-logo-B06952A462-seeklogo.com.png"
+                      src="/starwars_logo.png"
                       alt="Workflow"
                     />
                   </div>
