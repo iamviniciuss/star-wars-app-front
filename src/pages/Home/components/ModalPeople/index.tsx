@@ -106,15 +106,15 @@ export default function ModalPeople() {
                         <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                             <div className="sm:flex sm:items-start">
                                 <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                                    <Dialog.Title as="h3"  data-cy-people-name={people.phrase || "Frase..."} className="text-lg leading-6 font-medium text-gray-900 text-center">
+                                    <Dialog.Title as="h3"  data-cy-people-name={people.phrase || ""} className="text-lg leading-6 font-medium text-gray-900 text-center">
                                     {people.name || ''}
                                     </Dialog.Title>
                                     <div className="mt-2">
-                                        <p data-cy-people-phrase={people_modal.phrase || "Frase..."} className="text-white italic text-center mt-4 text-gray-500">{people_modal.phrase || "Frase..."}</p>
+                                        <p data-cy-people-phrase="true" className="text-white italic text-center mt-4 text-gray-500">{people_modal.phrase || ""}</p>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>  
 
                         <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                             <button
