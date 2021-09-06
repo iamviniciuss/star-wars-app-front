@@ -41,9 +41,12 @@ describe('Peoples' , () => {
             expect(xhr.status).be.eq(200)
             expect(xhr.response.body.name).be.eq("Luke Skywalker")  
 
+            
             const phrase = "Olá! Meu nome é Luke Skywalker. Sou um humano, peso 77 Kg, nasci em Tatooine no ano 19BBY e já pilotei X-wing."
             
-            cy.get(`[data-cy-people-phrase]`).contains(phrase)
+            cy.get(`[data-cy-people-phrase='true']`).should(($p) => {
+                expect($p.text()).to.not.have.length(0  )
+            })
 
             cy.get(`[data-cy-people-name]`).then(elem => {
                 expect(elem.text()).be.eq(xhr.response.body.name)                
